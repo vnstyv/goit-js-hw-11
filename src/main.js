@@ -42,7 +42,7 @@ function searchImg(params) {
                         html +
                         `<li class="gallery-item">
                         <a href=${hit.largeImageURL}>
-                        <img class="gallery-img" src=${hit.webformatURL} alt=${hit.tags}>
+                        <img class="gallery-img" src="${hit.webformatURL}" alt="${hit.tags}">
                         </a>
                         <div class="gallery-text-box">
                         <p>Likes: <span class="text-value">${hit.likes}</span></p>
@@ -68,7 +68,10 @@ function searchImg(params) {
         })
     
         .catch(error => {
-            console.log(error.message);
+            iziToast.error({
+                position: 'topRight',
+                message: `Error: ${error.message}. Please try again!`,
+            });
         })
         .finally(() => {
             pageLoader.style.display = 'none';
