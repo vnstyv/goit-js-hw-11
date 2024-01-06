@@ -27,6 +27,7 @@ const lightbox = new SimpleLightbox(".gallery a", {
     });
 
 function searchImg(params) {
+    pageLoader.style.display = 'block';
     return fetch(`https://pixabay.com/api/?${params}`)
         .then(response => {
             if (!response.ok) {
@@ -77,7 +78,6 @@ function searchImg(params) {
 pageForm.addEventListener("submit", event => {
     event.preventDefault();
     pageGallery.innerHTML = '';
-    pageLoader.style.display = 'block';
     searchParamsDefaults.q = event.target.elements.search.value.trim();
     const searchParams = new URLSearchParams(searchParamsDefaults);
     searchImg(searchParams.toString());
